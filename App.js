@@ -21,6 +21,8 @@
  * -----------------------------
  * react is a libraray and we can use it in small portions only as well as full scaled applications
  */
+import React from "react";
+import ReactDOM from "react-dom/client";
   
 const heading = React.createElement(
         "div",//type
