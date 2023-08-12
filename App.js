@@ -1,52 +1,24 @@
-
-/*
- * 
- *  <div id"parent">
- *      <div id="child">
- *          <h1 id="h1"></h1>
- *      </div>
- *  </div>
- * 
- * ReactElement(JS object) => HTML(Browser understands)
- * using ReactDOM.render
- *------------------------------ 
- *  <div id"parent">
- *      <div id="child">
- *          <h1 id="h1"></h1>
- *          <h2 id="h2"></h1>
- *      </div>
- *  </div>
- * 
- * we can use array
- * -----------------------------
- * react is a libraray and we can use it in small portions only as well as full scaled applications
- */
 import React from "react";
 import ReactDOM from "react-dom/client";
-  
-const heading = React.createElement(
-        "div",//type
-        {id:"parent"},//attributes
-        React.createElement(
-            "div",
-            {id:"child"}, 
-            [
-                React.createElement(
-                    "h1",
-                    {id:"h1"},
-                    "I am h1"
-                ),
-                React.createElement(
-                    "h2",
-                    {id:"h2"},
-                    "I am h2"
-                )
-            ]
-        )//children
-            
-    );
-console.log(heading);//JS Object
+
+const heading = <h1>Heading using JSX</h1>;
+const title = <h1>Heading using React Element</h1>;
+
+const TitleComponent = () =>{
+    return <h1>Title Component</h1>
+}
+
+const number = 10000;
+const HeadingComponent = () =>
+    <div>
+        {title}
+        function calling from jsx{TitleComponent()} {/* using component like a function and calling from jsx   */}
+        <TitleComponent /> {/* Component composition : component in component */}
+        <h1> Heading using Functional Component</h1>
+        <h2>Using JS in JSX like number is {number}</h2>
+    </div>;
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-console.log(root.render);
-root.render(heading);
-console.log(root);
+
+// root.render(heading);
+root.render(<HeadingComponent />);
