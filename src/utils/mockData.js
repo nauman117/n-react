@@ -1,24 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 
-/*
-*
-* Header
-*  - Logo
-*  - Nav Items
-* Body
-* - Search
-* - ResturantContainer
-*   - ResturantCards
-*    - Img
-*    - Name of Res, Star Rating, Cuisine, Deliverytime
-* Footer
-*
-*
-
-*/
-
-const resObj = [
+const resList = [
     {
       "info": {
         "id": "175807",
@@ -2354,75 +2335,5 @@ const resObj = [
       }
     }
   ];
-const Header = () => {
-    return (
-        <div className="header">
-            <div className="logo=container">
-                {/* <img className="logo" src = "https://static.vecteezy.com/system/resources/previews/010/149/586/non_2x/food-delivery-icon-sign-symbol-design-free-png.png"></img> */}
-                <img className="logo" src = "https://static.vecteezy.com/system/resources/previews/019/607/567/non_2x/fast-food-vector-clipart-design-graphic-clipart-design-free-png.png"></img>
-            </div>
-            <div className="nav-items">
-                <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-    );
-};
-const rende = (array) => {
-    
-let result = array.slice(0, 3).join(', ');
 
-if (array.length > 3) {
-  result += ', ...';
-}
-return result;
-}
-const styleCard ={
-    //inlined styles 
-    backgroundColor:"#f0f0f0",
-}
-const ResturantCard = (props) => {
-    const {cloudinaryImageId, name, avgRatingString, cuisines, costForTwo} =props?.resData?.info;
-    return(
-        <div className="res-card" style={styleCard}>
-            <img className="res-logo" src ={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/" + cloudinaryImageId}></img>
-            <h3>{name}</h3>
-            <h4>{avgRatingString} ⭐</h4>
-            <span>{rende(cuisines)}</span>
-            <h4>{costForTwo}</h4>
-        </div>
-    );
-};
-const Body = () => {
-    return(
-        <div className="body">
-            <div className="search">Search</div>
-            <div className="res-container">
-                {
-                    resObj.map((e,index) => {//Index as a key is an anti pattern
-                        return <ResturantCard
-                        	key={parseInt(e?.info.id)}
-                            	resData={e}
-                        	/>
-                    })
-                }
-            </div>
-        </div>
-    );
-};
-const AppLayout = () => {
-    return( 
-        <div className="app">
-            <Header />
-            <Body />
-        </div>
-    );
-};
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// root.render(heading);
-root.render(<AppLayout />);
+  export default resList;
