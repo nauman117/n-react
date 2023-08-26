@@ -2,24 +2,24 @@ import { useEffect, useState } from "react";
 import resList from "../utils/mockData";
 import ResturantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
 const [listOfRestaurant, setListOfRestaurant] =useState([])
 const [filteredListOfRestaurant, setFilteredlistOfRestaurant] =useState([])
 const [searchText, setSearchText] =useState("")
 useEffect(
-    ()=>{
-            console.log("useEffect after the component is rendered")
-            fetchData();
+     ()=>{
+             fetchData();
         },
     []
 )
 const fetchData = async () => {
     const data= await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=16.2893144&lng=80.4604643&is-seo-homepage-enabled=true"
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     )
     const json = await data.json();
-    // console.log("json",json?.data?.cards[0]?.card?.card?.imageGridCards.info)
+    console.log("json",json)
     setListOfRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     setFilteredlistOfRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 }   
@@ -39,17 +39,19 @@ console.log("Body rendered")
             </div>
             <button 
                 onClick={()=> setFilteredlistOfRestaurant(listOfRestaurant.filter((res)=>{
-                    console.log(res)
+                    
                     return(res.info.avgRatingString>4)}))}
                 className="filter-btn">Top Rated Restaurant</button>
             </div>
             <div className="res-container">
                 {
                     filteredListOfRestaurant?.map((e,index) => {//Index as a key is an anti pattern
-                        return <ResturantCard
-                        	    key={parseInt(e?.info.id)}
-                            	resData={e}
-                        	/>
+                        return <Link key={parseInt(e?.info.id)} to={"/restaurant/"+e?.info.id}>
+                                    <ResturantCard
+                                        key={parseInt(e?.info.id)}
+                                        resData={e}
+                                    />
+                                </Link>
                     })
                 }
             </div>
