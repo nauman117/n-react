@@ -4,41 +4,48 @@ class UserClass extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log(this.props.name + " child constructor")
+        // console.log(this.props.name + " child constructor")
         
         this.state = {
-            count: 1,
-            count2: 2, //useState is doing this internally
+            userInfo:{
+                name:"Dummy",//show shimmer
+                location:"Default",
+                avatar_url:"http://dummy-photo.com"
+            }
+            
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         //make api call
-        //useEffect [] once
-        console.log(this.props.name + " child componentDidMount")
+        const data = await fetch("https://api.github.com/users/naumaniac");
+        const json= await data.json();
+        this.setState(
+            {
+                userInfo : json,
+            }
+        )
+        console.log("🚀 ~ json:", json)
+    }
+
+    componentDidUpdate(){
+
+        console.log("componentDidUpdate")
+    }
+
+    componentWillUnmount(){
+        console.log("componentWillUnmount")
     }
 
     render() { 
 
-        console.log(this.props.name + " child render")
+        // console.log(this.props.name + " child render")
 
-        const { name, location } = this.props;
-        const { count, count2 } = this.state;
+        const { name, location, avatar_url } = this.state.userInfo;
+        // debugger;
         return (
             <div className="user-card">
-                <h2>Count : {count}</h2>
-                <h2>Count2 : {count2}</h2>
-                <button onClick={()=>{
-                    //Never update stae variables directly
-                    this.setState(
-                        {
-                            count:this.state.count+1,
-                            count2:this.state.count2+2
-                        }
-                    )
-                }}
-                >
-                    Count Increase</button>
+                <img src={ avatar_url }/>
                 <h2>Name : {name}</h2>
                 <h2>Location : {location}</h2>
                 <h2>This i s Namaste React WebSeries</h2>
@@ -48,3 +55,24 @@ class UserClass extends React.Component {
 }
 
 export default UserClass;
+
+/*
+ * Mounting Cycle
+ *      (
+ *           Constructor(dummy)
+ *           Render(dummy)
+ *           < webpage loaded Dummy >
+ *           componentDidMount ApiCall this.setState
+ *      )
+ * Updating Cycle/Recoinciliation
+ *      ( 
+ *           Render(API data)
+ *           < webpage API data >
+ *           componentDidUpdate      
+ *      )
+ * 
+ * 
+ * 
+ * 
+ * 
+*/
