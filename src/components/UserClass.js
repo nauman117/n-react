@@ -2,14 +2,23 @@ import React from "react";
 
 class UserClass extends React.Component {
     constructor(props) {
+        console.log("child constructor")
         super(props);
-        console.log(props)
         this.state = {
             count: 1,
             count2: 2, //useState is doing this internally
         }
     }
+
+    componentDidMount() {
+        //make api call
+        //useEffect [] once
+        console.log("child componentDidMount")
+    }
+
     render() { 
+        console.log("child render")
+
         const { name, location } = this.props;
         const { count, count2 } = this.state;
         return (

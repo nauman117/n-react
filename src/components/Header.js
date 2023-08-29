@@ -6,16 +6,16 @@ export const Header = () => {
     const [btnNameReact,setBtnNameReact]=useState("Login")
 
     useEffect(()=>{
-        console.log("no dependency array => useEffect called on every component render")
+        // console.log("no dependency array => useEffect called on every component render")
     })
     useEffect(()=>{
-        console.log("[] empty dependency array => useEffect called on initial render(only once)")
+        // console.log("[] empty dependency array => useEffect called on initial render(only once)")
     },[])
     useEffect(()=>{
-        console.log("[dependency] array => useEffect called everytime depenendency changes")
+        // console.log("[dependency] array => useEffect called everytime depenendency changes")
     },[btnNameReact])
     let btnName = "login";
-    console.log("Header Rendered")
+    // console.log("Header Rendered")
     return (
         <div className="header">
             <div className="logo=container">
