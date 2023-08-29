@@ -19,8 +19,9 @@ class Contact extends React.Component {
     return (
       <div>
         <h1>Contact us Page</h1>
-        <User name="Nauman (function)" location="Lahore"/>
-        <UserClass name="Nauman (class)" location="Lahore"/>
+        {/* <User name="Nauman (function)" location="Lahore"/> */}
+        <UserClass name="First (class)" location="Lahore"/>
+        <UserClass name="Second (class)" location="Lahore"/>
     </div>
     )
   }
