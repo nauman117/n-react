@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function User(props) {
   const [count, setCount] = useState(1);
   const [count2, setCount2] = useState(2);
   const { name, location } = props;
+  useEffect(()=>{
+    //make api calls
+  },[])
+  async function getUserInfo(){
+    const data = await fetch("https://api.github.com/users/naumaniac")
+  }
   return (
     <div className="user-card">
       <h2>Count : {count}</h2>
