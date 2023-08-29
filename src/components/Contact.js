@@ -6,8 +6,8 @@ function Contact() {
   return (
     <div>
         <h1>Contact us Page</h1>
-        <User name="Nauman (function)"/>
-        <UserClass name="Nauman (class)"/>
+        <User name="Nauman (function)" location="Lahore"/>
+        <UserClass name="Nauman (class)" location="Lahore"/>
     </div>
   )
 }
