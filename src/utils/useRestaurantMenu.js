@@ -3,21 +3,21 @@ import { MENU_URL } from './constants';
 
 function useRestaurantMenu(resId) {
 
-    const [ resInfo , setResInfo ]= useState(null);
+    const [resInfo, setResInfo] = useState(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchData();
-    },[])
-    
+    }, [])
+
     const fetchData = async () => {
         try {
-            
+
             const response = await fetch(MENU_URL + resId);
             const json = await response.json();
-            
+
             setResInfo(json);
 
-        } 
+        }
         catch (error) {
             console.error("Error fetching data:", error);
         }

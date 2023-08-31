@@ -5,39 +5,39 @@ class UserClass extends React.Component {
         super(props);
 
         // console.log(this.props.name + " child constructor")
-        
+
         this.state = {
-            userInfo:{
-                name:"Dummy",//show shimmer
-                location:"Default",
-                avatar_url:"http://dummy-photo.com"
+            userInfo: {
+                name: "Dummy",//show shimmer
+                location: "Default",
+                avatar_url: "http://dummy-photo.com"
             }
-            
+
         }
     }
 
     async componentDidMount() {
         //make api call
         const data = await fetch("https://api.github.com/users/naumaniac");
-        const json= await data.json();
+        const json = await data.json();
         this.setState(
             {
-                userInfo : json,
+                userInfo: json,
             }
         )
         console.log("🚀 ~ json:", json)
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
 
         console.log("componentDidUpdate")
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log("componentWillUnmount")
     }
 
-    render() { 
+    render() {
 
         // console.log(this.props.name + " child render")
 
@@ -45,7 +45,7 @@ class UserClass extends React.Component {
         // debugger;
         return (
             <div className="user-card">
-                <img src={ avatar_url }/>
+                <img src={avatar_url} />
                 <h2>Name : {name}</h2>
                 <h2>Location : {location}</h2>
                 <h2>This i s Namaste React WebSeries</h2>

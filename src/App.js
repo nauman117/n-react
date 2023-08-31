@@ -13,7 +13,7 @@ import Shimmer from "./components/Shimmer";
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
-    return( 
+    return (
         <div className="app">
             <Header />
             <Outlet /> {/* Replaced by Body or About or Contact or Error */}
@@ -22,36 +22,36 @@ const AppLayout = () => {
 };
 
 const appRouter = createBrowserRouter([
-    { 
-        path:"/",
-        element: <AppLayout/>,
-        children:[//children routes so that header intact
-            { 
-                path:"/",
-                element: <Body/>,
+    {
+        path: "/",
+        element: <AppLayout />,
+        children: [//children routes so that header intact
+            {
+                path: "/",
+                element: <Body />,
             },
-            { 
-                path:"/about",
+            {
+                path: "/about",
                 element: (
                     <Suspense fallback={<Shimmer />}>
-                      <About />
+                        <About />
                     </Suspense>
-                  ),
+                ),
             },
-            { 
-                path:"/contact",
-                element: <Contact/>,
+            {
+                path: "/contact",
+                element: <Contact />,
             },
-            { 
-                path:"/grocery",
-                element: <Grocery/>
+            {
+                path: "/grocery",
+                element: <Grocery />
             },
-            { 
-                path:"/restaurant/:resId",//dynamic path using resId
-                element: <RestaurantMenu/>,
+            {
+                path: "/restaurant/:resId",//dynamic path using resId
+                element: <RestaurantMenu />,
             }
-        ],   
-        errorElement: <Error/>
+        ],
+        errorElement: <Error />
     },
     // { 
     //     path:"/about",

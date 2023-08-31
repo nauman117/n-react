@@ -9,7 +9,7 @@ function RestaurantMenu() {
     const resInfo = useRestaurantMenu(resId);
 
 
-    if (resInfo === null ) {
+    if (resInfo === null) {
         return <Shimmer />;
     }
 
@@ -25,7 +25,7 @@ function RestaurantMenu() {
             {/* <h3></h3> */}
             <h2>Menu</h2>
             <ul>
-                {item.map((i,index)=> <li key={index}>{i?.card?.info?.name} - For {i?.card?.info?.price/10} ₹ Only</li>)}
+                {item.map((i, index) => <li key={index}>{i?.card?.info?.name} - For {i?.card?.info?.price / 10} ₹ Only</li>)}
             </ul>
             {/* Render your item cards here */}
         </div>

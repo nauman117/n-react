@@ -4,24 +4,24 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
 export const Header = () => {
-    const [btnNameReact,setBtnNameReact]=useState("Login")
- const onlineStatus =useOnlineStatus();
-    useEffect(()=>{
+    const [btnNameReact, setBtnNameReact] = useState("Login")
+    const onlineStatus = useOnlineStatus();
+    useEffect(() => {
         // console.log("no dependency array => useEffect called on every component render")
     })
-    useEffect(()=>{
+    useEffect(() => {
         // console.log("[] empty dependency array => useEffect called on initial render(only once)")
-    },[])
-    useEffect(()=>{
+    }, [])
+    useEffect(() => {
         // console.log("[dependency] array => useEffect called everytime depenendency changes")
-    },[btnNameReact])
+    }, [btnNameReact])
     let btnName = "login";
     // console.log("Header Rendered")
     return (
         <div className="header">
             <div className="logo=container">
                 {/* <img className="logo" src = "https://static.vecteezy.com/system/resources/previews/010/149/586/non_2x/food-delivery-icon-sign-symbol-design-free-png.png"></img> */}
-                <img className="logo" src = {LOGO_URL}></img>
+                <img className="logo" src={LOGO_URL}></img>
             </div>
             <div className="nav-items">
                 <ul>
@@ -41,7 +41,7 @@ export const Header = () => {
                         <Link to="/grocery">Grocery</Link>
                     </li>
                     <li>Cart</li>
-                    <button className="login-btn" onClick={()=>{btnNameReact=="Login" ? setBtnNameReact("Logout"):setBtnNameReact("Login")}}>{btnNameReact}</button>
+                    <button className="login-btn" onClick={() => { btnNameReact == "Login" ? setBtnNameReact("Logout") : setBtnNameReact("Login") }}>{btnNameReact}</button>
                 </ul>
             </div>
         </div>
