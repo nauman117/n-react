@@ -1,19 +1,22 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header";
-import {Header} from "./components/Header";
-import Body from "./components/Body";
-import About from "./components/About";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import Header from "./components/Header";
+import Body from "./components/Body";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Grocery from "./components/Grocery";
+import Shimmer from "./components/Shimmer";
+
+// Import About lazily
+const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
     return( 
         <div className="app">
             <Header />
-            <Outlet /> {/*replaced by Body or About or Contact or Error*/}
+            <Outlet /> {/* Replaced by Body or About or Contact or Error */}
         </div>
     );
 };
@@ -29,11 +32,19 @@ const appRouter = createBrowserRouter([
             },
             { 
                 path:"/about",
-                element: <About/>,
+                element: (
+                    <Suspense fallback={<Shimmer />}>
+                      <About />
+                    </Suspense>
+                  ),
             },
             { 
                 path:"/contact",
                 element: <Contact/>,
+            },
+            { 
+                path:"/grocery",
+                element: <Grocery/>
             },
             { 
                 path:"/restaurant/:resId",//dynamic path using resId

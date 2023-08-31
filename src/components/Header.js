@@ -32,9 +32,14 @@ export const Header = () => {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <Link to="/about">About Us</Link></li>
+                        <Link to="/about">About Us</Link>
+                    </li>
                     <li>
-                        <Link to="/contact">Contact Us</Link></li>
+                        <Link to="/contact">Contact Us</Link>
+                    </li>
+                    <li>
+                        <Link to="/grocery">Grocery</Link>
+                    </li>
                     <li>Cart</li>
                     <button className="login-btn" onClick={()=>{btnNameReact=="Login" ? setBtnNameReact("Logout"):setBtnNameReact("Login")}}>{btnNameReact}</button>
                 </ul>
