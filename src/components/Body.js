@@ -22,12 +22,23 @@ const Body = () => {
     }
     const fetchData = async () => {
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
         )
         const json = await data.json();
         console.log("json", json)
-        setListOfRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredlistOfRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        var a=true;
+        for(let i =0; i<json?.data?.cards.length ; i++){
+            if(json?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle?.restaurants !== undefined && a==true)
+            {
+                a=false
+                console.log(i)
+                setListOfRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+                setFilteredlistOfRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+            }
+        }
+        // setListOfRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        // setFilteredlistOfRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         console.log("filteredlistOfRestaurant: ", filteredListOfRestaurant);
     }
     if (listOfRestaurant?.length === 0) {
