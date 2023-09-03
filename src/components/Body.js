@@ -25,8 +25,9 @@ const Body = () => {
         )
         const json = await data.json();
         console.log("json", json)
-        setListOfRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredlistOfRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListOfRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setFilteredlistOfRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        console.log("filteredlistOfRestaurant: ", filteredListOfRestaurant);
     }
     if (listOfRestaurant?.length === 0) {
         // return <h1>loading...</h1>;
@@ -35,21 +36,23 @@ const Body = () => {
     console.log("Body rendered")
     return (listOfRestaurant?.length === 0 ? <Shimmer /> :
         <div className="body">
-            <div className="filter">
-                <div className="search">
-                    <input type="text" className="search-box" onChange={(e) => { setSearchText(e.target.value) }} value={searchText}></input>
-                    <button onClick={() => { setFilteredlistOfRestaurant(listOfRestaurant.filter((a) => a.info.name.toLowerCase().includes(searchText.toLowerCase()))) }}>
+            <div className="filter flex">
+                <div className="search m-4 p-4">
+                    <input type="text" className="search-box border border-solid border-black" onChange={(e) => { setSearchText(e.target.value) }} value={searchText}></input>
+                    <button className="px-4 py-1 bg-green-100 m-4 rounded-lg" onClick={() => { setFilteredlistOfRestaurant(listOfRestaurant.filter((a) => a.info.name.toLowerCase().includes(searchText.toLowerCase()))) }}>
                         Search
                     </button>
                 </div>
+                <div className="m-4 p-4 flex items-center">
                 <button
                     onClick={() => setFilteredlistOfRestaurant(listOfRestaurant.filter((res) => {
 
                         return (res.info.avgRatingString > 4)
                     }))}
-                    className="filter-btn">Top Rated Restaurant</button>
+                    className="filter-btn px-4 py-1 bg-gray-50 rounded-lg">Top Rated Restaurant</button>
+                </div>
             </div>
-            <div className="res-container">
+            <div className="res-container flex flex-wrap justify-center">
                 {
                     filteredListOfRestaurant?.map((e, index) => {//Index as a key is an anti pattern
                         return <Link key={parseInt(e?.info.id)} to={"/restaurant/" + e?.info.id}>

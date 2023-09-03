@@ -13,9 +13,9 @@ function RestaurantMenu() {
         return <Shimmer />;
     }
 
-    const data = resInfo?.data?.cards[0]?.card?.card?.info;
-    // console.log("🚀 ~ file: RestaurantMenu.js:33 ~ RestaurantMenu ~ data:", data)
-    const item = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card.itemCards;
+    const data = resInfo?.data?.cards[3]?.card?.card?.info;
+    console.log("🚀 ~ file: RestaurantMenu.js:33 ~ RestaurantMenu ~ data:", data)
+    const item = resInfo?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card.itemCards;
     // console.log("🚀 ~ file: RestaurantMenu.js:35 ~ RestaurantMenu ~ item:", item)
 
     return (
