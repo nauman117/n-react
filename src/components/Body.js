@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import resList from "../utils/mockData";
-import ResturantCard from "./RestaurantCard";
+import ResturantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -9,6 +9,7 @@ const Body = () => {
     const [listOfRestaurant, setListOfRestaurant] = useState([])
     const [filteredListOfRestaurant, setFilteredlistOfRestaurant] = useState([])
     const [searchText, setSearchText] = useState("")
+    const RestaurantCardPromoted = withPromotedLabel(ResturantCard);
     useEffect(
         () => {
             fetchData();
@@ -56,10 +57,20 @@ const Body = () => {
                 {
                     filteredListOfRestaurant?.map((e, index) => {//Index as a key is an anti pattern
                         return <Link key={parseInt(e?.info.id)} to={"/restaurant/" + e?.info.id}>
-                            <ResturantCard
-                                key={parseInt(e?.info.id)}
-                                resData={e}
-                            />
+                            {/**if restaurant is promoted then add promoted label */}
+                            {
+                                e?.info?.promoted ? 
+                                    <RestaurantCardPromoted 
+                                        key={parseInt(e?.info.id)}
+                                        resData={e}
+                                    /> 
+                                    :
+                                    <ResturantCard
+                                        key={parseInt(e?.info.id)}
+                                        resData={e}
+                                    />
+                            }
+                            
                         </Link>
                     })
                 }
